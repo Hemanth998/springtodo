@@ -27,10 +27,16 @@ public class TodoService {
     }
 
     public Todo updateTodoService(long id, Todo todo) {
+        if(todosRepository.findById(id).isEmpty()){
+            throw new ResourceNotFoundException("No Todo found with this id : "+id);
+        }
         return todosRepository.save(todo);
     }
 
     public Void deleteTodoService(long id){
+        if(todosRepository.findById(id).isEmpty()){
+            throw new ResourceNotFoundException("No Todo found with this id : "+id);
+        }
         todosRepository.deleteById(id);
         return null;
     }
