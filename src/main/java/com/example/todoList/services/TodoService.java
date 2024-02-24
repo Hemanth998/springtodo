@@ -1,5 +1,6 @@
 package com.example.todoList.services;
 
+import com.example.todoList.exceptions.ResourceNotFoundException;
 import com.example.todoList.models.Todo;
 import com.example.todoList.repositories.TodosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class TodoService {
         return todosRepository.save(todo);
     }
 
-    public Optional<Todo> getTodoByIdService(long id) {
-        return todosRepository.findById(id);
+    public Todo getTodoByIdService(long id) {
+        return todosRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No Todo found with this id : "+id));
     }
 
     public Todo updateTodoService(long id, Todo todo) {
