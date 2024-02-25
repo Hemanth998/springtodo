@@ -1,10 +1,12 @@
 package com.example.todoList.controllers;
 
 import com.example.todoList.models.Todo;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.example.todoList.services.TodoService;
 
@@ -13,6 +15,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/api/v1/todos")
+@Validated
 public class TodosController {
 
     @Autowired
@@ -30,7 +33,7 @@ public class TodosController {
 
 
     @PostMapping
-    public ResponseEntity<Todo> createTodoService(@RequestBody Todo todo){
+    public ResponseEntity<Todo> createTodoService(@Valid @RequestBody Todo todo){
         return new ResponseEntity<Todo>(todoService.createTodoService(todo),HttpStatus.CREATED);
     }
 
