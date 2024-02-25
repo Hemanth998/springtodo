@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "todo_name")
     @NotBlank(message = "Name is mandatory")

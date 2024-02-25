@@ -26,7 +26,7 @@ public class TodosController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Todo> getTodoByIdService(@PathVariable long id){
+    public ResponseEntity<Todo> getTodoByIdService(@PathVariable Long id){
             return new ResponseEntity<Todo>(todoService.getTodoByIdService(id),HttpStatus.OK);
 
     }
