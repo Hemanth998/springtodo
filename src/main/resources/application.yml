@@ -1,0 +1,12 @@
+spring:
+    datasource:
+        password: ${MYSQL_PASSWORD}
+        url: ${MYSQL_HOST}
+        username: ${MYSQL_USERNAME}
+    jpa:
+        hibernate:
+            ddl-auto: update
+    security:
+        user:
+            name: Hemanth
+            password: 10031998K
