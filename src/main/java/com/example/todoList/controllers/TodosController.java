@@ -10,8 +10,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.example.todoList.services.TodoService;
 
+import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/api/v1/todos")
@@ -21,7 +21,9 @@ public class TodosController {
     @Autowired
     public TodoService todoService;
     @GetMapping
-    public ResponseEntity<List<Todo>> getAllTodos(){
+    public ResponseEntity<List<Todo>> getAllTodos(Principal principal){
+        System.out.println("User : " + principal);
+        System.out.println("Postman");
         return new ResponseEntity<List<Todo>>(todoService.getAllTodosService(), HttpStatus.OK);
     }
 
