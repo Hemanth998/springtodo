@@ -3,6 +3,7 @@ package com.example.todoList.controllers;
 
 
 import com.example.todoList.models.ApplicationUser;
+import com.example.todoList.models.LoginResponseDTO;
 import com.example.todoList.models.RegistrationDTO;
 import com.example.todoList.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,9 @@ public class AuthenticationController {
         return authenticationService.registerUser(body.getUsername(), body.getPassword());
     }
 
-//    @PostMapping("/login")
-//    public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body){
-//        return authenticationService.loginUser(body.getUsername(), body.getPassword());
-//    }
+
+    @PostMapping("/login")
+    public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body){
+        return authenticationService.loginUser(body.getUsername(), body.getPassword());
+    }
 }

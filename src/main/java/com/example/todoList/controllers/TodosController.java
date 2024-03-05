@@ -22,7 +22,7 @@ public class TodosController {
     public TodoService todoService;
     @GetMapping
     public ResponseEntity<List<Todo>> getAllTodos(Principal principal){
-        System.out.println("User : " + principal);
+        System.out.println("User : " + principal.getName());
         System.out.println("Postman");
         return new ResponseEntity<List<Todo>>(todoService.getAllTodosService(), HttpStatus.OK);
     }

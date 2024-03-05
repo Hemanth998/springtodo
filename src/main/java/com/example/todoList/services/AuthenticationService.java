@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.example.todoList.models.ApplicationUser;
+import com.example.todoList.models.LoginResponseDTO;
 import com.example.todoList.models.Role;
 import com.example.todoList.repositories.RoleRepository;
 import com.example.todoList.repositories.UserRepository;
@@ -34,6 +35,8 @@ public class AuthenticationService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private TokenService tokenService;
 
 
     public ApplicationUser registerUser(String username, String password){
@@ -48,20 +51,20 @@ public class AuthenticationService {
         return userRepository.save(new ApplicationUser(0, username, encodedPassword, authorities));
     }
 
-//    public LoginResponseDTO loginUser(String username, String password){
-//
-//        try{
-//            Authentication auth = authenticationManager.authenticate(
-//                    new UsernamePasswordAuthenticationToken(username, password)
-//            );
-//
-//            String token = tokenService.generateJwt(auth);
-//
-//            return new LoginResponseDTO(userRepository.findByUsername(username).get(), token);
-//
-//        } catch(AuthenticationException e){
-//            return new LoginResponseDTO(null, "");
-//        }
-//    }
+    public LoginResponseDTO loginUser(String username, String password){
+
+        try{
+            Authentication auth = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(username, password)
+            );
+
+            String token = tokenService.generateJwt(auth);
+
+            return new LoginResponseDTO(userRepository.findByUsername(username).get(), token);
+
+        } catch(AuthenticationException e){
+            return new LoginResponseDTO(null, "");
+        }
+    }
 
 }
